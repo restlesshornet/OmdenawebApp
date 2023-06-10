@@ -56,6 +56,33 @@ def process_video(video_path):
 
     return video_path_output
 
+def webcam():
+    with st.empty():
+        FRAME_WINDOW = st.image([])
+        cap = cv2.VideoCapture(0)
+
+        while True:
+            _, frame = cap.read()
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+            results = model.predict(img)
+
+            for r in results:
+            
+                annotator = Annotator(frame)
+        
+                boxes = r.boxes
+                for box in boxes:
+            
+                    b = box.xyxy[0]  # get box coordinates in (top, left, bottom, right) format
+                    c = box.cls
+                    annotator.box_label(b, model.names[int(c)])
+          
+            frame = annotator.result() 
+
+            FRAME_WINDOW.image(frame)
+
 
         
 def main():
@@ -122,7 +149,7 @@ def main():
         st.sidebar.subheader('Settings')
         
         options = st.sidebar.radio(
-            'Options:', ('Image', 'Video'), index=1)
+            'Options:', ('Image', 'Video', 'Webcam'), index=1)
         
         st.sidebar.markdown("---")
          # Image
@@ -162,9 +189,12 @@ def main():
                 # Remove the temporary files
                 temp_file.close()
                 os.remove(video_path_output)
-              
-                     
-
+            
+        if options == 'Webcam':
+            webcam_button = st.button("Start")
+            if webcam_button:
+                webcam()
+                 
             
     elif selected == "Contributors":
         st.subheader("Contributors")
