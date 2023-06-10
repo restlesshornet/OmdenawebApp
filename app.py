@@ -65,7 +65,6 @@ def main():
     st.title("AI Road Inspection System")
     Header = st.container()
     
-    st.image("logo.png")
     ##MainMenu
     
     with st.sidebar:
@@ -84,6 +83,7 @@ def main():
     ##HOME page 
     
     if selected == "Project Information":
+        st.image("logo.png")
         st.subheader("Problem Statement")
         problem_statement = """
         Current practices of performing road inspections are time-consuming and labour-intensive. Road surfaces degrade on a 
@@ -161,6 +161,7 @@ def main():
                 # Remove the temporary files
                 temp_file.close()
                 os.remove(video_path_output)
+              
                      
 
             
@@ -169,8 +170,7 @@ def main():
         st.markdown("<b><u>Project Leads :</u></b> Eeman Majumder, Vaasu Bisht , Cesar Tinoco & Mario Rodriguez", unsafe_allow_html=True)
         st.markdown("<b><u>Management & HR:</u><b> Sakshi Sawarkar ", unsafe_allow_html=True)
         st.markdown("<b><u>Project Contributors :</u></b> \n  ", unsafe_allow_html=True)
-        st.text(""" 1.  Adeeba Rashid \n 2.  Aditya Narayan Jha \n 3.  Akshit Srivastava \n 4.  Ameya Sharma \n 5.  Ananya Tiwari \n 6.  Annirudha Kumar \n 7.  Arjita Arora \n 8.  Aryan Rai \n 9.  Ashwin J R \n 10. Bhargav Patki \n 11. Bhushan Kumar \n 
- 12. Darshnik Rohal \n 13. Debadrita Dey \n 14. Devanshi Pathak \n 15. Enrique Unzueta \n 16. Jyotsna Bhatia \n 17. Mohit Kumar Saw \n 18. Mrunmayee Ketkar \n 19. Mudit Gaur \n 20. Navneet Lamba \n 21. Punit Kaushik \n 22. Pushpendra Kushwaha \n 23. Qurat ul aaein \n 24. Raj Mansuriya25. Ram Vikram Singh \n 26. Sergio Reyes \n 27. Shreya Tripathi \n 28. Simone Reynoso \n 29. Soumyashis Sarkar \n 30. Sourav Dutta \n 31. Suhani Thakur \n 32. Swetha Thampi M \n 33. Tarandeep Singh Juneja \n 34. Virat Srivastava \n 35. Yahya Ismaiel \n)
+        st.text(""" 1.  Adeeba Rashid \n 2.  Aditya Narayan Jha \n 3.  Akshit Srivastava \n 4.  Ameya Sharma \n 5.  Ananya Tiwari \n 6.  Annirudha Kumar \n 7.  Arjita Arora \n 8.  Aryan Rai \n 9.  Ashwin J R \n 10. Bhargav Patki \n 11. Bhushan Kumar \n 12. Darshnik Rohal \n 13. Debadrita Dey \n 14. Devanshi Pathak \n 15. Enrique Unzueta \n 16. Jyotsna Bhatia \n 17. Mohit Kumar Saw \n 18. Mrunmayee Ketkar \n 19. Mudit Gaur \n 20. Navneet Lamba \n 21. Punit Kaushik \n 22. Pushpendra Kushwaha \n 23. Qurat ul aaein \n 24. Raj Mansuriya25. Ram Vikram Singh \n 26. Sergio Reyes \n 27. Shreya Tripathi \n 28. Simone Reynoso \n 29. Soumyashis Sarkar \n 30. Sourav Dutta \n 31. Suhani Thakur \n 32. Swetha Thampi M \n 33. Tarandeep Singh Juneja \n 34. Virat Srivastava \n 35. Yahya Ismaiel \n""")
 
     elif selected == "Model Information":
         st.subheader('Introduction')
