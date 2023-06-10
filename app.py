@@ -64,10 +64,9 @@ def webcam():
 
         while True:
             _, frame = cap.read()
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            
 
-            results = model.predict(img)
+            results = model.predict(frame)
 
             for r in results:
             
