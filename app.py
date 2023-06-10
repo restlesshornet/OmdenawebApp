@@ -12,6 +12,7 @@ from moviepy.editor import ImageSequenceClip
 import os
 import shutil
 from ultralytics.yolo.utils.plotting import Annotator
+from cv2 import cvtColor
 
 model = YOLO('best.pt')
 
@@ -65,6 +66,8 @@ def webcam():
         while True:
             _, frame = cap.read()
             
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
             results = model.predict(frame)
 
