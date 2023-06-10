@@ -66,15 +66,13 @@ def webcam():
 
         while True:
             _, frame = cap.read()
-            
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-            results = model.predict(frame)
+            results = model.predict(img)
 
             for r in results:
             
-                annotator = Annotator(frame)
+                annotator = Annotator(img)
         
                 boxes = r.boxes
                 for box in boxes:
@@ -83,9 +81,8 @@ def webcam():
                     c = box.cls
                     annotator.box_label(b, model.names[int(c)])
           
-            frame = annotator.result() 
 
-            FRAME_WINDOW.image(frame)
+            FRAME_WINDOW.image(img)
 
 
         
