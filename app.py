@@ -11,6 +11,7 @@ import imageio.v2 as imageio
 from moviepy.editor import ImageSequenceClip
 import os
 import shutil
+from ultralytics.yolo.utils.plotting import Annotator
 
 model = YOLO('best.pt')
 
@@ -62,7 +63,7 @@ def webcam():
         cap = cv2.VideoCapture(0)
 
         while True:
-            frame = cap.read()
+            _, frame = cap.read()
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
