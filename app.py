@@ -60,31 +60,36 @@ def process_video(video_path):
     return video_path_output
 
 def webcam():
-    with st.empty():
-        FRAME_WINDOW = st.image([])
-        cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0)
+    if not cap.isOpened():
+        st.error("Failed to open the camera. Please make sure it is connected and accessible.")
+        return
+
+    st.sidebar.markdown('---')
+    FRAME_WINDOW = st.image([])
+
+    while True:
         ret, frame = cap.read()
+        if not ret:
+            break
 
-        while ret:
-            
-            
-            img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-            results = model.predict(img)
+        results = model.predict(img)
 
-            for r in results:
-            
-                annotator = Annotator(img)
-        
-                boxes = r.boxes
-                for box in boxes:
-            
-                    b = box.xyxy[0]  # get box coordinates in (top, left, bottom, right) format
-                    c = box.cls
-                    annotator.box_label(b, model.names[int(c)])
-          
+        for r in results:
+            annotator = Annotator(img)
+            boxes = r.boxes
+            for box in boxes:
+                b = box.xyxy[0]
+                c = box.cls
+                annotator.box_label(b, model.names[int(c)])
 
-            FRAME_WINDOW.image(img)
+        annotated_img = annotator.result()
+        FRAME_WINDOW.image(annotated_img)
+
+    cap.release()
+
 
 
         
