@@ -59,45 +59,6 @@ def process_video(video_path):
 
     return video_path_output
 
-def webcam():
-    cap = None
-    indices = [0, 1]  # Try camera indices 0 and 1
-
-    for index in indices:
-        cap = cv2.VideoCapture(index)
-        if cap.isOpened():
-            break
-
-    if cap is None or not cap.isOpened():
-        st.error("Failed to open the camera. Please make sure it is connected and accessible.")
-        return
-
-    st.sidebar.markdown('---')
-    FRAME_WINDOW = st.image([])
-
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            break
-
-        img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-
-        results = model.predict(img)
-
-        for r in results:
-            annotator = Annotator(img)
-            boxes = r.boxes
-            for box in boxes:
-                b = box.xyxy[0]
-                c = box.cls
-                annotator.box_label(b, model.names[int(c)])
-
-        annotated_img = annotator.result()
-        FRAME_WINDOW.image(annotated_img)
-
-    cap.release()
-
-
 
 
         
@@ -165,7 +126,7 @@ def main():
         st.sidebar.subheader('Settings')
         
         options = st.sidebar.radio(
-            'Options:', ('Image', 'Video', 'Webcam'), index=1)
+            'Options:', ('Image', 'Video'), index=1)
         
         st.sidebar.markdown("---")
          # Image
@@ -205,11 +166,7 @@ def main():
                 # Remove the temporary files
                 temp_file.close()
                 os.remove(video_path_output)
-            
-        if options == 'Webcam':
-            webcam_button = st.button("Start")
-            if webcam_button:
-                webcam()
+           
                  
             
     elif selected == "Contributors":
