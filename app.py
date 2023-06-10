@@ -62,10 +62,12 @@ def process_video(video_path):
 def webcam():
     with st.empty():
         FRAME_WINDOW = st.image([])
-        cap = cv2.VideoCapture(1)
+        cap = cv2.VideoCapture(0)
+        ret, frame = cap.read()
 
-        while True:
-            _, frame = cap.read()
+        while ret:
+            
+            
             img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
             results = model.predict(img)
