@@ -62,7 +62,7 @@ def process_video(video_path):
 def webcam():
     with st.empty():
         FRAME_WINDOW = st.image([])
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(1)
 
         while True:
             _, frame = cap.read()
