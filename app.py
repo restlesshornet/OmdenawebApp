@@ -15,7 +15,8 @@ from ultralytics.yolo.utils.plotting import Annotator
 from cv2 import cvtColor
 
 model = YOLO('best.pt')
-
+def bgr2rgb(image):
+    return image[:, :, ::-1]
 def process_video(video_path):
     # Load the video
     cap = cv2.VideoCapture(video_path)
@@ -66,8 +67,8 @@ def webcam():
         while True:
             _, frame = cap.read()
             
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            frame = bgr2rgb(frame)
+            img = bgr2rgb(frame)
 
             results = model.predict(frame)
 
