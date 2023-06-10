@@ -10,6 +10,7 @@ import tempfile
 import imageio.v2 as imageio
 from moviepy.editor import ImageSequenceClip
 import os
+import shutil
 
 model = YOLO('best.pt')
 
@@ -51,7 +52,7 @@ def process_video(video_path):
         os.system(f"ffmpeg -framerate {fps} -i {temp_dir}/frame_%d.png -c:v libx264 -pix_fmt yuv420p {video_clip_path}")
 
         # Rename the video clip with the desired output path
-        os.rename(video_clip_path, video_path_output)
+        shutil.copy2(video_clip_path, video_path_output)
 
     return video_path_output
 
