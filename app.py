@@ -60,8 +60,15 @@ def process_video(video_path):
     return video_path_output
 
 def webcam():
-    cap = cv2.VideoCapture(0)
-    if not cap.isOpened():
+    cap = None
+    indices = [0, 1]  # Try camera indices 0 and 1
+
+    for index in indices:
+        cap = cv2.VideoCapture(index)
+        if cap.isOpened():
+            break
+
+    if cap is None or not cap.isOpened():
         st.error("Failed to open the camera. Please make sure it is connected and accessible.")
         return
 
@@ -89,6 +96,7 @@ def webcam():
         FRAME_WINDOW.image(annotated_img)
 
     cap.release()
+
 
 
 
