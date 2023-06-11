@@ -15,12 +15,6 @@ from ultralytics.yolo.utils.plotting import Annotator
 from cv2 import cvtColor
 import os
 
-with open('packages.txt', 'r') as f:
-    packages = f.readlines()
-for package in packages:
-    package = package.strip()  # Remove leading/trailing whitespaces
-    command = f"sudo apt-get --allow-releaseinfo-change-suite install -y {package}"
-    os.system(command)
 
 model = YOLO('best.pt')
 def bgr2rgb(image):
