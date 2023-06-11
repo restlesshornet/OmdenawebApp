@@ -67,7 +67,7 @@ def process_video(video_path):
 
         
 def main():
-    os.system("sudo apt-get --allow-releaseinfo-change-suite update")
+
     with open("styles.css", "r") as source_style:
         st.markdown(f"<style>{source_style.read()}</style>", 
              unsafe_allow_html = True)
