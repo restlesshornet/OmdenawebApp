@@ -13,29 +13,13 @@ import os
 import shutil
 from ultralytics.yolo.utils.plotting import Annotator
 from cv2 import cvtColor
-import subprocess
+
 
 model = YOLO('best.pt')
 def bgr2rgb(image):
     return image[:, :, ::-1]
 
 
-def run_shell_command(command):
-    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-    output, error = process.communicate()
-    return output.decode(), error.decode()
-# Command to execute
-command = "sudo apt-get --allow-releaseinfo-change-suite update"
-# Execute the command
-output, error = run_shell_command(command)
-# Display the command output in Streamlit
-if output:
-    st.text("Command output:")
-    st.code(output)
-# Display the command error in Streamlit, if any
-if error:
-    st.text("Command error:")
-    st.code(error)
     
 def process_video(video_path):
     # Load the video
