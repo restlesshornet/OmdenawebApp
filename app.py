@@ -16,6 +16,7 @@ from cv2 import cvtColor
 import os
 
 
+
 model = YOLO('best.pt')
 def bgr2rgb(image):
     return image[:, :, ::-1]
