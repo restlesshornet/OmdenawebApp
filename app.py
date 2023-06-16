@@ -101,7 +101,7 @@ def main():
         """
         st.markdown(f"<script>{js_code}</script>", unsafe_allow_html=True)
             
-        st.image("logo1.png")
+        st.image("logo.png")
         st.subheader("Problem Statement")
         problem_statement = """
         Current practices of performing road inspections are time-consuming and labour-intensive. Road surfaces degrade on a 
