@@ -76,6 +76,13 @@ def main():
         
     st.title("AI Road Inspection System")
     Header = st.container()
+    js_code = """
+        const elements = window.parent.document.getElementsByTagName('footer');
+        elements[0].innerHTML = "Mexico x Omdena VIT Bhopal Local Chapter " + new Date().getFullYear();
+        """
+    st.markdown(f"<script>{js_code}</script>", unsafe_allow_html=True)
+            
+    st.image("logo.png")
     
     ##MainMenu
     
@@ -95,13 +102,7 @@ def main():
     ##HOME page 
     
     if selected == "Project Information":
-        js_code = """
-        const elements = window.parent.document.getElementsByTagName('footer');
-        elements[0].innerHTML = "Mexico x Omdena VIT Bhopal Local Chapter " + new Date().getFullYear();
-        """
-        st.markdown(f"<script>{js_code}</script>", unsafe_allow_html=True)
-            
-        st.image("logo.png")
+        
         st.subheader("Problem Statement")
         problem_statement = """
         Current practices of performing road inspections are time-consuming and labour-intensive. Road surfaces degrade on a 
