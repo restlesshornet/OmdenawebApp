@@ -108,7 +108,8 @@ def main():
         st.text(problem_statement)
         
         with st.expander("Read More"): 
-            text = """The goal of this project is to design, build and test an inspection system for detecting road abnormalities, defects, and damages
+            text = """
+        The goal of this project is to design, build and test an inspection system for detecting road abnormalities, defects, and damages
         using machine learning. The proposed system aims to improve the efficiency of road inspections and reduce
         the time and labor required for the process. The system will be equipped with a camera to capture video streams
         from different roads, and the data will be analyzed using the Matlab machine learning toolbox to train and test the network.
